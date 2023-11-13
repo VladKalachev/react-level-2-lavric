@@ -1,10 +1,17 @@
+import { observer } from "mobx-react";
+import { useState } from "react"
+
 function App() {
+  const [count, setCount] = useState(0);
 
   return (
     <div>
-      Hello React!
+      Hello React! {count} <br/>
+      <button type="button" onClick={() => setCount(count + 1)}>1 +</button>
     </div>
   )
 }
 
-export default App
+const observedApp = observer(App);
+
+export default observedApp
