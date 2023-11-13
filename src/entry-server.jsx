@@ -1,3 +1,9 @@
-import app from './app';
+import createApp from './app';
 
-export default app;
+function createServer() {
+  console.log("here")
+  const app = createApp();
+
+  return app;
+}
+export default createServer;
