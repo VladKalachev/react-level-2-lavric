@@ -1,5 +1,9 @@
-import products from "./products";
+import createProductsApi from "./products";
 
-export default {
-  products
+function createApi(http) {
+  return {
+    products: createProductsApi(http)
+  }
 }
+
+export default createApi

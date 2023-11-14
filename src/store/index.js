@@ -1,9 +1,9 @@
 import User from "./user";
 
 
-function createRootStore() {
+function createRootStore(api) {
   const rootStore = {
-    user: new User()
+    user: new User(api)
   }
 
   return rootStore;

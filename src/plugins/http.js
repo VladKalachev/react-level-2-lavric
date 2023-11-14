@@ -1,7 +1,12 @@
 import axios from "axios";
 
-const http = axios.create({
-  baseURL: "/"
-})
 
-export default http;
+function createHttpPlugin(url) {
+  const http = axios.create({
+    baseURL: url
+  })
+
+  return http;
+}
+
+export default createHttpPlugin;
