@@ -10,8 +10,8 @@ const template = readFileSync('dist/index.html').toString('utf-8');
 
 server.use(express.static('dist'));
 
-server.get('*', (req, res) => {
-  const app = createApp();
+server.get('*', async (req, res) => {
+  const app = await createApp();
   const html = renderToString(app)
   const page = template.replace('<!--ssr-->', html);
   res.end(page);

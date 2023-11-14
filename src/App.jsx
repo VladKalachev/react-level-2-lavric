@@ -4,12 +4,12 @@ import storeContext from './contexts/store';
 import createHttpPlugin from './plugins/http';
 import createApi from './api/index';
 
-function createApp() {
+async function createApp() {
   const http = createHttpPlugin('./api');
   const api = createApi(http);
   const rootStore = createRootStore(api);
 
-  // rootStore.products.all();
+  //await rootStore.products.all();
 
   const app = (
     <storeContext.Provider value={rootStore}>
