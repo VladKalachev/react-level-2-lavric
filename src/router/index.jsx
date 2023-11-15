@@ -1,14 +1,14 @@
-import Page1 from "../pages/page1";
-import Page2 from "../pages/page2";
+import ProductsPage from "../pages/ProductsPage";
+import ProductItemPage from "../pages/ProductItemPage";
 
 const routes = [
   {
     path: '/',
-    Component: Page1
+    Component: ProductsPage
   },
   {
-    path: '/2',
-    Component: Page2
+    path: '/catalog/:id',
+    Component: ProductItemPage
   },
   {
     path: '*',
