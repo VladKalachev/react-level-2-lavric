@@ -27,6 +27,10 @@ class Catalog {
     makeAutoObservable(this, { rootStore: false });
     this.rootStore = rootStore;
   }
+
+  get one() {
+   return id => this.products.find(pr => pr.id === id)
+  }
 }
 
 export default Catalog;
