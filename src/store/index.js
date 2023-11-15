@@ -1,12 +1,12 @@
 import User from "./user";
+import Card from './card';
 
-function createRootStore(api) {
-  const rootStore = {
-    user: new User(api)
+class RootStore {
+  constructor(api) {
+    this.api = api;
+    this.user = new User(this);
+    this.card = new Card(this);
   }
-
-  return rootStore;
-
 }
 
-export default createRootStore;
+export default RootStore;

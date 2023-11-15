@@ -1,13 +1,12 @@
 import { makeAutoObservable } from "mobx";
 
-class User {
+class Card {
   id = null;
+  
   constructor(rootStore) {
     makeAutoObservable(this, { rootStore: false });
-    this.id = Math.random();
     this.rootStore = rootStore;
   }
-  
 }
 
-export default User;
+export default Card;

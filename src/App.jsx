@@ -1,5 +1,5 @@
 import App from './components/App'
-import createRootStore from './store';
+import RootStore from './store';
 import storeContext from './contexts/store';
 import createHttpPlugin from './plugins/http';
 import createApi from './api/index';
@@ -7,7 +7,7 @@ import createApi from './api/index';
 async function createApp() {
   const http = createHttpPlugin('./api');
   const api = createApi(http);
-  const rootStore = createRootStore(api);
+  const rootStore = new RootStore(api);
 
   //await rootStore.products.all();
 

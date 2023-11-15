@@ -1,13 +1,14 @@
 import { observer } from "mobx-react";
 import { useContext, useState } from "react"
 import storeContext from "../contexts/store";
-import { Link, Route, Routes } from "react-router-dom";
-import Page1 from "../pages/page1";
-import Page2 from "../pages/page2";
+import { Link, useRoutes } from "react-router-dom";
+import routes from "../router";
+
 
 function App() {
   const [count, setCount] = useState(0);
   const store = useContext(storeContext);
+  const view = useRoutes(routes);
 
   return (
     <div>
@@ -19,10 +20,7 @@ function App() {
       <hr/>
       <>{store.user.id}</>
       <hr/>
-      <Routes>
-        <Route path="/" Component={Page1}></Route>
-        <Route path="/2" Component={Page2}></Route>
-      </Routes>
+      {view}
     </div>
   )
 }
