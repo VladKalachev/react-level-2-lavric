@@ -2,8 +2,9 @@ import useStore from "../hooks/useStore";
 import { observer } from "mobx-react";
 import { useParams } from "react-router-dom";
 import Error404 from "../components/erorrs/Error404";
+import ProductItem from "../components/products/ProductItem";
 
-function ProductItemPage() {
+const ProductItemPage = observer(() => {
   const { catalog, page } = useStore();
   const { id } = useParams();
 
@@ -16,10 +17,8 @@ function ProductItemPage() {
   }
   
   page?.update(`${product?.name}`);
-  
-  return <div>Name: {product.name}</div>
-}
 
-const ProductItemPageObserver = observer(ProductItemPage)
+  return <ProductItem product={product}/>
+})
 
-export default ProductItemPageObserver;
+export default ProductItemPage;

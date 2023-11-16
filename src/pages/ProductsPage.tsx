@@ -8,7 +8,7 @@ function ProductsPage() {
   return <div className="row">
     <h1>Catalog</h1>
     {catalog.products.map(pr => (<div className="col col-4 mt-3" key={pr.id}>
-        <h3>{pr.name}</h3>
+        <h3>{pr.title}</h3>
         <Link to={`/catalog/${pr.id}`}>Read more</Link>
     </div>))}
   </div>

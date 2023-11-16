@@ -8,19 +8,19 @@ class Catalog {
   products = [
     {
       id: 1,
-      name: "Iphone 10",
+      title: "Iphone 10",
     },
     {
       id: 2,
-      name: "Huawei",
+      title: "Huawei",
     },
     {
       id: 3,
-      name: "Nokia 10",
+      title: "Nokia 10",
     },
     {
       id: 4,
-      name: "Samsung 10",
+      title: "Samsung 10",
     }
   ];
 
