@@ -12,9 +12,9 @@ server.use(express.static('dist'));
 
 server.get('*', async (req, res) => {
   const context = { url: req.url };
-  const app = await createApp(context);
+  const { app, store } = await createApp(context);
   const html = renderToString(app)
-  const page = template.replace('<!--ssr-->', html);
+  const page = template.replace('<!--ssr-->', html).replace('<!--ssr-title-->', store.page.title);
   res.end(page);
 });
 

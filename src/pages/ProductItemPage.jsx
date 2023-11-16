@@ -3,11 +3,13 @@ import { observer } from "mobx-react";
 import { useParams } from "react-router-dom";
 
 function ProductItemPage() {
-  const { catalog } = useStore();
+  const { catalog, page } = useStore();
   const { id } = useParams();
-  console.log('ProductItemPage', catalog.one(Number(id)))
+
   const validId = /^[1-9]+\d*$/.test(id);
   const product = catalog.one(+id)
+
+  page.update(`${product.name}`);
 
   if (!validId || !product) {
     return <div>404</div>

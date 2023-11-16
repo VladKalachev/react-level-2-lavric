@@ -4,8 +4,10 @@ import { StaticRouter } from 'react-router-dom/server';
 function createServer(context) {
   console.log("here")
  
-  const app = createApp();
+  const { app, store } = createApp();
 
-  return <StaticRouter location={context.url}>{app}</StaticRouter>
+  const serverApp =  <StaticRouter location={context.url}>{app}</StaticRouter>
+
+  return { app: serverApp, store }
 }
 export default createServer;
