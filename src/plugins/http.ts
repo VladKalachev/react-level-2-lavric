@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-function createHttpPlugin(url) {
+function createHttpPlugin(url: string) {
   const http = axios.create({
     baseURL: url
   })

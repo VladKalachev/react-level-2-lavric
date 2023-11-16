@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import RootStore from "..";
 
 class Catalog {
   id = null;
@@ -22,8 +23,10 @@ class Catalog {
       name: "Samsung 10",
     }
   ];
+
+  rootStore: RootStore
   
-  constructor(rootStore) {
+  constructor(rootStore: RootStore) {
     makeAutoObservable(this, { rootStore: false });
     this.rootStore = rootStore;
   }
