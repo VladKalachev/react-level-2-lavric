@@ -1,7 +1,11 @@
 import createApp from './app';
 import { StaticRouter } from 'react-router-dom/server';
 
-function createServer(context) {
+interface ServerAppContext {
+url: string;
+} 
+
+function createServer(context: ServerAppContext) {
   console.log("here")
  
   const { app, store } = createApp();

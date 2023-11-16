@@ -15,7 +15,7 @@ server.get('*', async (req, res) => {
   const { app, store } = await createApp(context);
   const html = renderToString(app)
   const page = template.replace('<!--ssr-->', html).replace('<!--ssr-title-->', store.page.title);
-  res.end(page);
+  res.status(store.page.status).end(page);
 });
 
 server.listen(8000)

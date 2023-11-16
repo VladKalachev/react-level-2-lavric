@@ -1,5 +1,6 @@
 import ProductsPage from "../pages/ProductsPage";
 import ProductItemPage from "../pages/ProductItemPage";
+import Error404 from "../components/erorrs/Error404";
 
 const routes = [
   {
@@ -12,7 +13,7 @@ const routes = [
   },
   {
     path: '*',
-    element: <div>404</div>
+    element: <Error404 />
   }
 ]
 

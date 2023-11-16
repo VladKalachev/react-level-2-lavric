@@ -32,7 +32,7 @@ class Catalog {
   }
 
   get one() {
-   return id => this.products.find(pr => pr.id === id)
+   return (id: number) => this.products.find(pr => pr.id === id)
   }
 }
 

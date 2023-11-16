@@ -1,6 +1,7 @@
 import useStore from "../hooks/useStore";
 import { observer } from "mobx-react";
 import { useParams } from "react-router-dom";
+import Error404 from "../components/erorrs/Error404";
 
 function ProductItemPage() {
   const { catalog, page } = useStore();
@@ -9,11 +10,12 @@ function ProductItemPage() {
   const validId = /^[1-9]+\d*$/.test(id);
   const product = catalog.one(+id)
 
-  page.update(`${product.name}`);
-
+  
   if (!validId || !product) {
-    return <div>404</div>
+    return <Error404 title="Product not found" />
   }
+  
+  page?.update(`${product?.name}`);
   
   return <div>Name: {product.name}</div>
 }
