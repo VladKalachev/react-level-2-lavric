@@ -20,7 +20,7 @@ async function createApp() {
     </apiContext.Provider>
   );
 
-  return { app, store };
+  return { app, store, api };
 }
 
 export default createApp;
