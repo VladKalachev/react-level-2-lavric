@@ -25,7 +25,7 @@ async function createApp(){
 		cache.data = window.appSSRData.cache;
 	}
 	else{
-		await store.catalog.load();
+		// await store.catalog.load();
 	}
 
 	const app = 

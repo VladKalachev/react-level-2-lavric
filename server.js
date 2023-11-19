@@ -39,25 +39,36 @@ async function recoursiveRender(app, cache){
 }
 
 
-server.get('*', async function(req, res){
+server.get('*', async function(req, resp){
 	try{
 		const context = { url: req.url };
 		const { app, store, cache } = await createApp(context);
 		const html = await recoursiveRender(app, cache);
-		const page = template.replace('<!--ssr-->', html).replace('<!--ssr-title-->', store.page.title);
-	
+		const ssrData = {
+			store: store.toJSON(),
+			cache: cache.data
+		}
+
+		const page = template
+			.replace('<!--ssr-->', html)
+			.replace('<!--ssr-title-->', store.page.title)
+			.replace('<!--ssr-data-->', `<script>
+				window.appSSRData = ${JSON.stringify(ssrData)}
+			</script>`);
+
 		if(store.page.status >= 300 && store.page.status <= 308){
-			res.redirect(store.page.status, store.page.redirectTo);
+			resp.redirect(store.page.status, store.page.redirectTo);
 		}
 		else{
-			res.status(store.page.status);
-			res.end(page);
+			resp.status(store.page.status);
+			resp.end(page);
 		}
 	}
 	catch(e){
+		console.log(e);
 		//log e
-		res.end(template);
+		resp.end(template);
 	}
 });
 
-server.listen(8000)
+server.listen(8000);

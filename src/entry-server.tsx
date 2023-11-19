@@ -1,27 +1,21 @@
 
 import createApp from './app';
 import { StaticRouter } from 'react-router-dom/server';
-import cacheContext, { Cache } from './contexts/cache'
 
 interface ServerAppContext {
-url: string;
+	url: string;
 } 
 
 async function createServer(context: ServerAppContext) {
  
-  const { app, store } = await createApp();
-
-	const cache: Cache = { data: {}, awaiting: {} };
-
+  const { app, store, cache } = await createApp();
 
   const serverApp =  (
     <StaticRouter location={context.url}>
-      <cacheContext.Provider value={cache}>
         { app }
-      </cacheContext.Provider>
     </StaticRouter>
   )
 
-  return { app: serverApp, store }
+  return { app: serverApp, store, cache }
 }
 export default createServer;

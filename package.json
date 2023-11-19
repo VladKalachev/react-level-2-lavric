@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "devssr": "nodemon server-dev.js",
     "build:client": "vite build",
     "build:server": "vite build --outDir dist-server --ssr src/entry-server.tsx",
     "build": "npm run build:client && npm run build:server",
