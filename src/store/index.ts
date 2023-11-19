@@ -19,6 +19,24 @@ class RootStore {
     this.catalog = new Catalog(this);
     this.page = new Page(this);
   }
+
+  toJSON() : JSONRootStore{
+		return {
+			catalog: {
+				products: this.catalog.products
+			}
+		}
+	}
+
+	fromJSON(data: JSONRootStore){
+		this.catalog.products = data.catalog.products;
+	}
+}
+
+export interface JSONRootStore{
+	catalog: {
+		products: Catalog['products']
+	}
 }
 
 export default RootStore;

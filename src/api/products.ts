@@ -9,11 +9,9 @@ function createProductsApi(http: AxiosInstance){
 		async one(id: number){
 			return (await http.get<TProductItem>(`products/index.php?id=${id}&delay`)).data;
 		},
-		reviews: {
-			async add(){
-				return 1;
-			}
-		}
+		async gallery(id: number){
+			return (await http.get<string[]>(`products/gasllery.php?id=${id}`)).data;
+		},
 	};
 }
 
