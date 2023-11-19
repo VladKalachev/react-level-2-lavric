@@ -1,8 +1,8 @@
 import { TApiInstance, TApiInstanceKeys } from "../../api";
-import cacheContext from "../../contexts/cache";
-import { GetByDotKey } from "../../types/utility/objects";
+import { GetByDotKey, getByDotKey, runFnWithTuple } from "../../types/utility/objects";
+import useApi from "../useApi";
+import useCache from "../useCache";
 import { TApiRequest } from "./types";
-import { useContext } from 'react'
 
 function useApiRequestServer<T extends TApiInstanceKeys>(
 	schema: T, 
@@ -10,21 +10,40 @@ function useApiRequestServer<T extends TApiInstanceKeys>(
 ){
 	type Res = Awaited<ReturnType<GetByDotKey<TApiInstance, T>>>;
 
-	const cache = useContext(cacheContext);
-	const key = schema + ':' + JSON.stringify(params);
+	const api = useApi();
+	const fn = getByDotKey(api, schema);
+	const cache = useCache();
+	const key = JSON.stringify(params);
 	
-	const result: TApiRequest<Res> = key in cache ? 
-		{
+	let result: TApiRequest<Res>;
+	const fnCache = cache.data[schema];
+	
+	if(fnCache !== undefined && fnCache[key]){
+		result = {
 			done: true,
 			success: true,
-			data: cache[key] as Res,
+			data: fnCache[key],
 			error: null
-		} : {
+		}
+	}
+	else{
+		if(cache.awaiting[schema] === undefined){
+			cache.awaiting[schema] = {};
+		}
+
+		const awaitingBox = cache.awaiting[schema];
+
+		if(awaitingBox && awaitingBox[key] === undefined){
+			awaitingBox[key] = runFnWithTuple(fn, params);
+		}
+
+		result = {
 			done: false,
 			success: false,
 			data: null,
 			error: null
-		};
+		}
+	}
 
 	return result;
 }
