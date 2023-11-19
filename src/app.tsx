@@ -4,6 +4,7 @@ import storeContext from './contexts/store';
 import createHttpPlugin from './plugins/http';
 import createApi from './api/index';
 import apiContext from './contexts/api';
+import { Profiler } from 'react';
 
 async function createApp() {
   const http = createHttpPlugin('./api');
@@ -15,7 +16,9 @@ async function createApp() {
   const app = (
     <apiContext.Provider value={api}>
       <storeContext.Provider value={store}>
+        <Profiler id="app" onRender={(id, phase, actualDuration, baseDuration, startTime, commitTime) => console.log(id, phase, actualDuration, baseDuration, startTime, commitTime)}>
         <App />
+        </Profiler>
       </storeContext.Provider>
     </apiContext.Provider>
   );
