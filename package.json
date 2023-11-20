@@ -11,7 +11,8 @@
     "build": "npm run build:client && npm run build:server",
     "prod": "nodemon server.js --watch dist-server/entry-server.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check": "tsc --noEmit"
   },
   "dependencies": {
     "axios": "^1.6.1",
