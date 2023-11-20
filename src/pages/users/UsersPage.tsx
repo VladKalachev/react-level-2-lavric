@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import useStore from "../../alien/hooks/useStore";
+import useStore from "../../hooks/useStore";
 import UserCard from "../../components/users/UserCard";
 
 const UsersPage = observer(() => {
