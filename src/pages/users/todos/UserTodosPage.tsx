@@ -1,19 +1,17 @@
 import { observer } from "mobx-react";
-import useRouteInt from "../../../alien/hooks/useRouteInt";
-import Error404 from "../../../alien/components/erorrs/Error404";
-import useStore from "../../../alien/hooks/useStore";
-import UserTodos from "../../../components/users/todos/UserTodos";
+import useApiRequest from "../../../hooks/useApiRequest";
+import useUserOutletContext from "../outlet/useUserOutlet";
 
 const UserTodosPage = observer(() => {
-	const routeId = useRouteInt('id');
-	const { users } = useStore();
-	const user = routeId.isValid ? users.one(routeId.value) : undefined;
+	const user = useUserOutletContext();
+	const { success, data: todos } = useApiRequest('users.todos.all', user.id);
 
-	if(!user){
-		return <Error404 title="User not found" />
-	}
-
-	return <UserTodos user={user} />
+	return <div>
+		<h2>User todos</h2>
+		{ success && <ul className="list-group">
+			{ todos.map(todo => <li className="list-group-item" key={todo.id}>{ todo.title }</li>) }
+		</ul> }
+	</div>
 });
 
 export default UserTodosPage;

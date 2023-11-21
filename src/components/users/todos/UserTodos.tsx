@@ -1,5 +1,5 @@
 import { TUserPrimary } from "../../../types/data";
-import useApiRequest from "../../../alien/hooks/useApiRequest";/* 
+import useApiRequest from "../../../hooks/useApiRequest";/* 
 import useApiRequestNoSSR from "../../../alien/hooks/useApiRequestNoSSr"; */
 
 interface UserCardProps{
