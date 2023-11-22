@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { TUserNeighbours, TUserPrimary } from "../../types/data";
-import useApiRequest from "../../alien/hooks/useApiRequest";
-import AppLink from "../../alien/router/AppLink";
+import useApiRequest from "../../hooks/useApiRequest";
+import AppLink from "../../router/AppLink";
 import UserOutlet from "../../pages/users/outlet/UserOutlet";
 
 interface UserDetailedProps{
