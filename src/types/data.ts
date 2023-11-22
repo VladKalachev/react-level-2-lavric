@@ -59,3 +59,23 @@ export type TTodo = {
 	title: string,
 	completed: boolean
 }
+
+export type TLoginResponse = {
+	success: true,
+	token: string
+} | {
+	success: false,
+	errors: string[]
+}
+
+export type TCheckResponse = {
+	auth: true,
+	user: TUser
+} | { auth: false }
+
+export type TPost = {
+	userId: number,
+	id: number,
+	title: string,
+	body: string
+}

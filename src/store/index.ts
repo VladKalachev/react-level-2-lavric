@@ -4,6 +4,7 @@ import Card from './modules/card';
 import Catalog from "./modules/catalog";
 import Page from "./modules/page";
 import Users from "./modules/users";
+import Auth from "./modules/auth";
 
 class RootStore {
   api: TApiInstance;
@@ -12,6 +13,7 @@ class RootStore {
   users: Users;
 	card: Card;
 	page: Page;
+	auth: Auth;
 
   constructor(api: TApiInstance) {
     this.api = api;
@@ -21,6 +23,7 @@ class RootStore {
     this.card = new Card(this);
     this.catalog = new Catalog(this);
     this.page = new Page(this);
+		this.auth = new Auth(this);
   }
 
 	toJson(): JSONStore{

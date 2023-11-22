@@ -8,6 +8,7 @@ function App() {
   const view = useRoutes(routesNative);
   const cache = useCache();
 
+
 	useEffect(() => {
 		cache.data = {};
 	}, [ cache ]);

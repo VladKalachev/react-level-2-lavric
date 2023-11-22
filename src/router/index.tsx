@@ -3,6 +3,8 @@ import UsersPage from "../pages/users/UsersPage";
 import UserPage from "../pages/users/UserPage";
 import UserTodosPage from "../pages/users/todos/UserTodosPage";
 import { RouteRecords, recordToNative } from "../router/lib";
+import LoginPage from "../pages/auth/LoginPage";
+import OfficePage from "../pages/office/OfficePage";
 
 const routes = {
 	home: {
@@ -28,6 +30,14 @@ const routes = {
 				}
 			}
 		}
+	},
+	login: {
+		path: '/auth/login',
+		element: <LoginPage/>
+	},
+	office: {
+		path: '/office',
+		element: <OfficePage />
 	},
 	e404: {
 		path: '*',

@@ -8,7 +8,7 @@ import createApi from './api/index.js';
 import { Cache } from './contexts/cache.js';
 
 async function createApp(){
-	const http = createHttpPlugin('http://faceprog.ru/reactcourseapi');
+	const http = createHttpPlugin('http://localhost:3000/');
 	const api = createApi(http);
 	const store = new RootStore(api);
 	const cache: Cache = { data: {}, awaiting: {} };
@@ -18,7 +18,7 @@ async function createApp(){
 		cache.data = window.appSSRData.cache;
 	}
 	else{
-    // await store.users.load();
+    await store.users.load();
 	}
 
 	const app = 
