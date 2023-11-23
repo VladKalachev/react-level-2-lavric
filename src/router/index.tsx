@@ -4,7 +4,10 @@ import UserPage from "../pages/users/UserPage";
 import UserTodosPage from "../pages/users/todos/UserTodosPage";
 import { RouteRecords, recordToNative } from "../router/lib";
 import LoginPage from "../pages/auth/LoginPage";
+import AuthGuard from "../components/AuthGuard";
 import OfficePage from "../pages/office/OfficePage";
+import GuestGuard from "../components/GuestGuard";
+import UserPostsPage from "../pages/users/posts/UserPostsPage";
 
 const routes = {
 	home: {
@@ -20,12 +23,12 @@ const routes = {
 				Component: UserTodosPage
 			},
 			hi: {
-				path: '/user/:id/hi',
-				element: <div>hi there</div>,
+				path: '/user/:id/posts',
+				element: <AuthGuard><UserPostsPage/></AuthGuard>,
 				children: {
 					some: {
-						path: '/user/:id/hi/:sample',
-						Component: UserTodosPage
+						path: '/user/:id/posts/:sample',
+						element: <div>hi there</div>
 					}
 				}
 			}
@@ -33,11 +36,11 @@ const routes = {
 	},
 	login: {
 		path: '/auth/login',
-		element: <LoginPage/>
+		element: <GuestGuard><LoginPage/></GuestGuard>
 	},
 	office: {
 		path: '/office',
-		element: <OfficePage />
+		element: <AuthGuard><OfficePage /></AuthGuard>
 	},
 	e404: {
 		path: '*',

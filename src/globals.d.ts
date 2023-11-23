@@ -1,11 +1,18 @@
-import { CacheData } from "./contexts/cache"
-import { JSONRootStore } from "./store"
+import { JSONStore } from "./store"
 
 declare global {
-	interface Window{
-		appSSRData?: {
-			store: JSONRootStore,
-			cache: CacheData
+	interface Window { 
+		ssrData: {
+			store: JSONStore,
+			cache: Record<string,unknown>
+		}
+	}
+}
+
+declare module 'axios'{
+	interface AxiosRequestConfig{
+		errorAlert: {
+			text: string
 		}
 	}
 }

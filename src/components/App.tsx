@@ -1,26 +1,24 @@
 import { useRoutes } from "react-router-dom";
 import { routesNative } from "../router";
-import { useEffect } from "react";
-import useCache from "../hooks/useCache";
+import useStore from "../hooks/useStore";
+import AppLink from "../router/AppLink";
 
 
 function App() {
   const view = useRoutes(routesNative);
-  const cache = useCache();
-
-
-	useEffect(() => {
-		cache.data = {};
-	}, [ cache ]);
-
-
-  return (
-    <div className="container mt-2">
-      <h1>Hello React!</h1>
-      <hr/>
-      {view}
-    </div>
-  )
+  const { auth: { user } } = useStore();
+	
+	return <div className="container mt-2">
+		<div className="row">
+			<div className="col"><h1>Hello React!</h1></div>
+			<div className="col">
+				{ !user && <AppLink to="login">Login</AppLink> }
+				{ user && <strong>{ user.email }</strong> }
+			</div>
+		</div>
+		<hr/>
+		{ view }
+	</div>
 }
 
 
